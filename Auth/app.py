@@ -1,7 +1,9 @@
 import connexion
 import requests
 
-data = requests.get('http://localhost:')
+data = requests.get('http:///userName')
+
+print(data.content)
 
 def auth(username, password):
     if username and password !='root':
