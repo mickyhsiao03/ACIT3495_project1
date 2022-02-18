@@ -1,0 +1,43 @@
+---
+openapi: 3.0.0
+info:
+  title: user credentials API
+  description: This API receives input from front end website where users input their credentials
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /auth:
+    post:
+      summary: input user credentials 
+      description: validates user credentials
+      operationId: app.authenticate
+      requestBody:
+        description: credentials to check
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth'
+      responses:
+        "200":
+          description: received credentials
+        "400":
+          description: Unknown credentials
+components:
+  schemas:
+    auth:
+      required:
+      - userName
+      - password
+      type: object
+      properties:
+        userName:
+          type: string
+          example: mickyhsiao
+        password:
+          type: string
+          example: myPassword
+        
