@@ -12,19 +12,20 @@
 <body>
    <div id="landing-page">
        
-       <form action="./Auth" method="POST">
+       <form action="http://localhost:8080/auth" method="POST" id="myForm">
             <div class="imgcontainer">
                 <img src="BCIT_logo.png" id="bcit-logo">
             </div>
             
             <div class="container">
                 <label for="data"><b>Some Data</b></label>
-                <input type="text" placeholder="Enter User" name="userName">
-                <input type="text" placeholder="Enter password" name="password">               
+                <input type="text" placeholder="Enter User" name="userName" id="userName">
+                <input type="text" placeholder="Enter password" name="password" id="pw">               
                 <button type="submit" class="login">Login</button>
             </div>
       </form>
 
     </div>
 </body>
+<script src="index.js"></script>
 </html>
