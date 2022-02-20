@@ -1,0 +1,54 @@
+---
+openapi: 3.0.0
+info:
+  title: Enter Grades API
+  description: This API receives input from front end website where users input the stock number
+  contact:
+    email: mhsiao6@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /grades:
+    post:
+      summary: input grades and detail
+      description: input grades and detail
+      operationId: app.enter_grade
+      requestBody:
+        description: grade details to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/grades'
+      responses:
+        "200":
+          description: grades confirmed valid
+        "400":
+          description: invalid
+components:
+  schemas:
+    grades:
+      required:
+      - first_name
+      - last_name
+      - course_name
+      - grade
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Micky 
+        last_name:
+          type: string
+          example: Hsiao
+        course_name:
+          type: string
+          example: ACIT3495
+        grade:
+          type: number
+          example: 60
+
+        

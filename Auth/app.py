@@ -1,5 +1,5 @@
 import connexion
-import requests
+
 
 
 def authenticate(body):
