@@ -19,15 +19,26 @@ def enter_grade(body):
                     body['course_name'],
                     body['grade']
                     )
-
     session.add(grade_data)
-
     session.commit()
     session.close()
 
-
-
     return NoContent, 201
+
+def get_grade():
+    session = DB_SESSION() 
+ 
+    readings = session.query(Grades)
+ 
+    results_list = [] 
+ 
+    for reading in readings: 
+        results_list.append(reading.to_dict()) 
+        
+ 
+    session.close() 
+
+    return results_list, 200
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')

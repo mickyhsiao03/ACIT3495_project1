@@ -28,6 +28,28 @@ paths:
           description: grades confirmed valid
         "400":
           description: invalid
+    get: 
+      summary: gets stats
+      operationId: app.get_grade
+      description: Gets grade info
+      responses: 
+        '200': 
+          description: Successfully returned a list grade stats
+          content: 
+            application/json: 
+              schema: 
+                type: array 
+                items: 
+                  $ref: '#/components/schemas/grades' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string
 components:
   schemas:
     grades:

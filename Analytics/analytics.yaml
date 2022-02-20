@@ -1,0 +1,60 @@
+---
+openapi: 3.0.0
+info:
+  title: Get Stats API
+  description: reads mysql database then store meaningful data into mongodb
+  contact:
+    email: mhsiao6@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /stats: 
+    get: 
+      summary: Gets the event stats 
+      operationId: app.get_stats
+      description: Gets meaningful data 
+      responses: 
+        '200': 
+          description: Successfully returned 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                items: 
+                  $ref: '#/components/schemas/ReadingStats' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string
+components:
+  schemas:
+    ReadingStats: 
+      required: 
+      - max_grade
+      - min_grade
+      - avg_grade
+      - popular_course
+      properties: 
+        max_grade: 
+          type: integer 
+          example: 100 
+        min_grade: 
+          type: integer 
+          example: 50
+        avg_grade: 
+          type: integer 
+          example: 70 
+        popular_course: 
+          type: string 
+          example: ACIT3495 
+
+        
