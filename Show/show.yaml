@@ -1,0 +1,63 @@
+---
+openapi: 3.0.0
+info:
+  title: Get Stats API
+  description: This API receives input from front end website where users input the stock number
+  contact:
+    email: mhsiao6@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /display: 
+    get: 
+      summary: Gets the event stats from analytics
+      operationId: app.get_stats
+      description: Gets analized info from mongodb
+      responses: 
+        '200': 
+          description: Successfully returned 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                items: 
+                  $ref: '#/components/schemas/ReadingStats' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string
+components:
+  schemas:
+    ReadingStats: 
+      required: 
+      - last_updated
+      - max_grade
+      - min_grade
+      - avg_grade
+      - popular_course
+      type: object
+      properties: 
+        last_updated:
+          type: string
+          example: '2022-02-12 16:35:17.839066'
+        max_grade: 
+          type: integer 
+          example: 100 
+        min_grade: 
+          type: integer 
+          example: 50
+        avg_grade: 
+          type: integer 
+          example: 70 
+        popular_course: 
+          type: string 
+          example: ACIT3495 

@@ -12,7 +12,7 @@ info:
 servers:
 - url: /
 paths:
-  /stats: 
+  /analyze: 
     get: 
       summary: Gets the event stats 
       operationId: app.populate
@@ -48,8 +48,7 @@ components:
       properties: 
         _id:
           type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          example: '2022-02-12 16:35:17.839066'
         max_grade: 
           type: integer 
           example: 100 

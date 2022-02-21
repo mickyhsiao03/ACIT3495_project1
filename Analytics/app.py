@@ -5,8 +5,8 @@ import pymongo
 import requests
 from collections import Counter
 import statistics
-import json
 import uuid
+from datetime import datetime
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["3495Mongo"]
@@ -49,7 +49,7 @@ def populate():
     trans_id = str(uuid.uuid4())
 
     #insert into mongo db
-    toInsert = {'_id': trans_id, 'max_grade': max_grade, 'min_grade': min_grade, 'avg_grade': int(avg_grade), 'popular_course': course_list[max_index]}
+    toInsert = {'_id': datetime.now(), 'max_grade': max_grade, 'min_grade': min_grade, 'avg_grade': int(avg_grade), 'popular_course': course_list[max_index]}
     grade_table.insert_one(toInsert)
 
     return toInsert, 200
