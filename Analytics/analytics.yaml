@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: Get Stats API
+  title: Analytics API
   description: reads mysql database then store meaningful data into mongodb
   contact:
     email: mhsiao6@my.bcit.ca
@@ -15,7 +15,7 @@ paths:
   /stats: 
     get: 
       summary: Gets the event stats 
-      operationId: app.get_stats
+      operationId: app.populate
       description: Gets meaningful data 
       responses: 
         '200': 
@@ -39,11 +39,17 @@ components:
   schemas:
     ReadingStats: 
       required: 
+      - _id
       - max_grade
       - min_grade
       - avg_grade
       - popular_course
+      type: object
       properties: 
+        _id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         max_grade: 
           type: integer 
           example: 100 

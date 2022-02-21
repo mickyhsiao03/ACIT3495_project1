@@ -5,6 +5,8 @@ import pymongo
 import requests
 from collections import Counter
 import statistics
+import json
+import uuid
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["3495Mongo"]
@@ -15,9 +17,9 @@ def populate():
 
     #make sure connection is valid
     if grade_response.status_code == 200:
-        print('got')
+        print('got response')
     else:
-        print('failed to get')
+        print('failed to get response')
     
 
     #convert response to json
@@ -44,29 +46,17 @@ def populate():
 
     max_count = max(count)
     max_index = count.index(max_count)
+    trans_id = str(uuid.uuid4())
 
-    print(course_list[max_index])
-    print('max', max_grade)
-    print('min', min_grade)
-    print('avg', avg_grade)
-
-    toInsert = {'max_grade': max_grade, 'min_grade': min_grade, 'avg_grade': avg_grade, 'popular_course': course_list[max_index]}
+    #insert into mongo db
+    toInsert = {'_id': trans_id, 'max_grade': max_grade, 'min_grade': min_grade, 'avg_grade': int(avg_grade), 'popular_course': course_list[max_index]}
     grade_table.insert_one(toInsert)
 
-    
+    return toInsert, 200
 
 
-
-
-
-
-    return NoContent, 200
-
-def get_stats():
-    return
 
 app = connexion.FlaskApp(__name__, specification_dir='')
-app.add_api("analytics.yaml", strict_validation=True, validate_responses=True)
+app.add_api("analytics.yaml")
 if __name__ == "__main__":
-    populate()
     app.run(port=8090)
