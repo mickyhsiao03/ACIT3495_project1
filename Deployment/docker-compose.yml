@@ -34,6 +34,26 @@ services:
       # Where our data will be persisted 
     volumes: 
       - mongo-data:/data/db
+  analytics:
+    image: analytics
+    restart: always
+    ports:
+      - "8090:8090"
+  auth:
+    image: auth
+    restart: always
+    ports:
+      - "8080:8080"
+  enter:
+    image: enter
+    restart: always
+    ports:
+      - "8100:8100"
+  show:
+    image: show
+    restart: always
+    ports:
+      - "8200:8200"
 # Names our volume 
 volumes: 
   mysql-data:
