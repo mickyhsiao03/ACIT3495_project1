@@ -1,6 +1,6 @@
 import mysql.connector
 
-db_conn = mysql.connector.connect(host="localhost", user="root", 
+db_conn = mysql.connector.connect(host="localhost", user="root",
 password="Iforgot1!", database="acit3495")
 
 db_cursor = db_conn.cursor()
@@ -16,3 +16,9 @@ db_cursor.execute('''
           ''')
 db_conn.commit()
 db_conn.close()
+
+
+def get_data():
+    db_cursor.execute("SELECT * FROM mytable")
+    rows = db_cursor.fetchall()
+    return rows

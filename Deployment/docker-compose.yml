@@ -29,7 +29,7 @@ services:
       - appnetwork
     ports: 
       # <Port exposed> : < MySQL Port running inside container> 
-      - '27017:27017' 
+      - 27017:27017
     expose: 
       # Opens port 3306 on the container 
       - '27017' 

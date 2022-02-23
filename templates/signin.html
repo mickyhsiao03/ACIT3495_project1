@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery.formalist.js') }}"></script>
+    <script src="{{ url_for('static', filename='conditional.js') }}"></script>
+<style>
+
+#right-float a {
+      text-align: right;
+      float: right;
+  }
+  .form {
+      font-weight: bolder;
+  }
+</style>
+
+</head>
+
+<body><div class="topnav">
+    <a class="active" href="{{ url_for('home') }}">Dashboard</a>
+    <a href="{{ url_for('index') }}" id="right-float">Sign In</a>
+    <a href="{{ url_for('addstudent') }}" id="right-float">Sign Up</a>
+</div>
+<br><br>
+    <div class="card">
+    <form action="http://localhost:5000/signin" method="post" class="card-body">
+        <h3 class="card-title">Student Login</h3>
+
+        <div class="form-group modal-body form">
+            <label>Enter Email:</label>
+            <p><input type="email" name="email" /></p>
+            <label>Enter Password:</label>
+            <p><input type="password" name="password" /></p>
+            <button class="btn btn-primary" name="submit" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>
