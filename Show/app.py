@@ -2,7 +2,7 @@ import connexion
 from connexion import NoContent
 import pymongo
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+myclient = pymongo.MongoClient("mongodb://deployment-mongo-db-1:27017/")
 mydb = myclient["3495Mongo"]
 grade_table = mydb['grade_stats']
 
