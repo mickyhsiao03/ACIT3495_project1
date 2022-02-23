@@ -8,12 +8,12 @@ import statistics
 import uuid
 from datetime import datetime
 
-myclient = pymongo.MongoClient("mongodb://deployment-mongo-db-1:27017/")
+myclient = pymongo.MongoClient("mongodb://mongo-db:27017/")
 mydb = myclient["3495Mongo"]
 grade_table = mydb['grade_stats']
 
 def populate():
-    grade_response = requests.get('http://deployment-enter-1:8100/grades')
+    grade_response = requests.get('http://enter:8100/grades')
 
     #make sure connection is valid
     if grade_response.status_code == 200:

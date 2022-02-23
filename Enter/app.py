@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from grades import Grades
 from base import Base
 
-DB_ENGINE = create_engine('mysql+pymysql://user:2705895a@deployment-mysql-db-1:3306/acit3495')
+DB_ENGINE = create_engine('mysql+pymysql://user:2705895a@mysql-db:3306/acit3495')
 Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
