@@ -1,8 +1,10 @@
 version: '3.3' 
 services:
-  mysql: 
+  mysql-db: 
     image: mysql:latest
-    restart: always 
+    restart: always
+    networks:
+      - appnetwork
     environment: 
       MYSQL_DATABASE: 'acit3495' 
       # So you don't have to use root, but you can if you like 
@@ -22,9 +24,9 @@ services:
       - mysql-data:/var/lib/mysql
   mongo-db: 
     image: mongo:latest
-    restart: always 
-    environment: 
-      MONGO_INITDB_DATABASE: 3495Mongo
+    restart: always
+    networks:
+      - appnetwork
     ports: 
       # <Port exposed> : < MySQL Port running inside container> 
       - '27017:27017' 
@@ -37,24 +39,45 @@ services:
   analytics:
     image: analytics
     restart: always
+    networks:
+      - appnetwork
     ports:
       - "8090:8090"
+    depends_on:
+      - "mysql-db"
+      - "mongo-db"
   auth:
     image: auth
     restart: always
+    networks:
+      - appnetwork
     ports:
       - "8080:8080"
+    depends_on:
+      - "enter"
+      - "show"
   enter:
     image: enter
     restart: always
+    networks:
+      - appnetwork
     ports:
       - "8100:8100"
+    depends_on:
+      - "mysql-db"
   show:
     image: show
     restart: always
+    networks:
+      - appnetwork
     ports:
       - "8200:8200"
+    depends_on:
+      - "mongo-db"
 # Names our volume 
 volumes: 
   mysql-data:
   mongo-data:
+networks:
+  appnetwork:
+    driver: bridge
